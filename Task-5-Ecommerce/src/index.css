@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: .dark on <html> activates all dark: variants */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* App shell root: at least one full dynamic viewport height so the Footer
+   can be pushed to the bottom of short pages (sticky-footer layout).
+   100dvh is preferred (accounts for mobile browser chrome); 100vh is the
+   fallback for browsers without dynamic viewport unit support.
+   The unlayered rule sits above Tailwind's layered min-h-dvh utility. */
+.min-h-dvh {
+  min-height: 100dvh;
+}
+@supports not (min-height: 100dvh) {
+  .min-h-dvh {
+    min-height: 100vh;
+  }
+}
