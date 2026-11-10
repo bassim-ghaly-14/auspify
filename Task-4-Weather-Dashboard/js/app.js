@@ -53,6 +53,18 @@ function nextSignal() {
 }
 
 /**
+ * Handle an unexpected rejection from an intentionally fire-and-forget
+ * asynchronous call, such as an async function invoked from an event
+ * listener. Expected failures are already handled and reported by the called
+ * operation itself; this handler is only a backstop, so no Promise is ever
+ * left unhandled. It must not return a Promise, otherwise a new unhandled
+ * rejection could be created from the handler itself.
+ */
+function onUnexpectedAsyncError(error) {
+  console.error('Unexpected asynchronous error:', error);
+}
+
+/**
  * Resolve a city and load its weather. Used both for the default city and for
  * user searches. Aborts any previous request first.
  *
@@ -212,7 +224,7 @@ async function init() {
       event.preventDefault();
       const button = form.querySelector('.search-button');
       if (button && button.disabled) return;
-      handleSearch(input.value);
+      handleSearch(input.value).catch(onUnexpectedAsyncError);
     });
   }
 
@@ -237,13 +249,13 @@ async function init() {
 
   if (refreshButton) {
     refreshButton.addEventListener('click', () => {
-      handleRefresh();
+      handleRefresh().catch(onUnexpectedAsyncError);
     });
   }
 
   if (retryButton) {
     retryButton.addEventListener('click', () => {
-      loadCity(state.city);
+      loadCity(state.city).catch(onUnexpectedAsyncError);
     });
   }
 
@@ -251,4 +263,4 @@ async function init() {
   await loadCity(state.city);
 }
 
-init();
+init().catch(onUnexpectedAsyncError);
