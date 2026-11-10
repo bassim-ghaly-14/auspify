@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auspify Weather Dashboard</title>
+  <meta name="description" content="Real-time weather conditions and forecasts for cities worldwide, powered by Open-Meteo.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#" aria-label="Auspify Weather — home">
+        <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <span class="brand-name">Auspify <span class="brand-accent">Weather</span></span>
+      </a>
+      <div class="header-actions">
+        <button type="button" class="unit-toggle" aria-pressed="false" data-unit="c" title="Switch temperature unit">
+          <span class="unit-value">°C</span>
+          <span class="visually-hidden">Switch temperature unit between Celsius and Fahrenheit</span>
+        </button>
+        <button type="button" class="refresh-button" aria-label="Refresh weather data" title="Refresh weather">
+          <svg class="refresh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C6.175 0 1.32 4.151.23 9.656h3.331C4.587 5.955 7.972 3.234 12 3.234c2.421 0 4.609.984 6.193 2.572l-3.85 3.85h9.657V0l-3.516 3.516C18.313 1.344 15.314 0 12 0ZM0 14.344V24l3.516-3.516C5.687 22.656 8.686 24 12 24c5.825 0 10.68-4.151 11.77-9.656h-3.331C19.413 18.045 16.028 20.766 12 20.766c-2.421 0-4.609-.984-6.193-2.572l3.85-3.85H0Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+
+      <!-- Search -->
+      <section class="search-section" aria-label="City search">
+        <div class="search-inner">
+          <form id="search-form" class="search-form" novalidate>
+            <div class="search-control">
+              <label for="city-input" class="visually-hidden">Search for a city</label>
+              <input type="search" id="city-input" class="search-input" placeholder="Search a city&hellip;" autocomplete="off" autocapitalize="words" spellcheck="false" aria-invalid="false" aria-describedby="search-hint search-message">
+              <button type="submit" class="search-button" id="search-button">
+                <span class="search-button-label">Search</span>
+                <svg class="search-button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </button>
+            </div>
+          </form>
+          <p id="search-message" class="search-message" role="alert" aria-live="assertive"></p>
+        </div>
+      </section>
+
+      <!-- Empty state: shown when the dashboard has no weather data to display -->
+      <p id="search-hint" class="search-hint empty-state" aria-live="polite">Enter a city name to view its weather</p>
+
+      <!-- Loading overlay -->
+      <div class="loader-overlay" id="loader-overlay" role="status" aria-live="polite" hidden>
+        <div class="loader-card">
+          <div class="loader-spinner"></div>
+          <p class="loader-text" id="loader-text">Loading weather data&hellip;</p>
+        </div>
+      </div>
+
+      <!-- Current weather -->
+      <section class="current-section" aria-label="Current weather">
+        <div class="current-card" id="current-card" hidden>
+          <div class="current-header">
+            <div class="place" id="place">Cairo, Egypt</div>
+            <time class="local-time" id="local-time" aria-live="polite">Loading time&hellip;</time>
+          </div>
+          <div class="current-main">
+            <div class="temperature">
+              <span class="temp-value" id="temp-value">--</span><span class="temp-unit" id="temp-unit">°C</span>
+            </div>
+            <div class="condition">
+              <span class="weather-icon" id="weather-icon" aria-hidden="true"></span>
+              <p class="condition-text" id="condition-text">--</p>
+            </div>
+          </div>
+          <div class="current-range">
+            <span class="range-item"><span class="range-label">Today's high</span><span class="range-value" id="temp-high">--</span></span>
+            <span class="range-item"><span class="range-label">Today's low</span><span class="range-value" id="temp-low">--</span></span>
+          </div>
+        </div>
+
+        <div id="current-error" class="current-error" hidden role="alert" aria-live="assertive">
+          <p class="error-title">Weather unavailable</p>
+          <p id="current-error-message"></p>
+          <button type="button" class="retry-button" id="current-retry">Try again</button>
+        </div>
+      </section>
+
+      <!-- Weather highlights -->
+      <section class="highlights-section" aria-label="Weather details">
+        <div class="section-head">
+          <h2 class="section-title">Weather Highlights</h2>
+        </div>
+        <div class="highlights-grid" id="highlights-grid"></div>
+      </section>
+
+      <!-- Hourly forecast -->
+      <section class="hourly-section" aria-label="Hourly forecast">
+        <div class="section-head">
+          <h2 class="section-title">Hourly Forecast</h2>
+        </div>
+        <div class="hourly-wrap" id="hourly-wrap">
+          <div class="hourly-list" id="hourly-list"></div>
+        </div>
+        <p id="hourly-empty" class="empty-msg" hidden>No hourly forecast data available.</p>
+      </section>
+
+      <!-- 7-day forecast -->
+      <section class="daily-section" aria-label="Seven-day forecast">
+        <div class="section-head">
+          <h2 class="section-title">7-Day Forecast</h2>
+        </div>
+        <div class="daily-grid" id="daily-grid"></div>
+        <p id="daily-empty" class="empty-msg" hidden>No daily forecast data available.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-note">Weather data provided by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> — free API, no key required.</p>
+      <p class="footer-disclaimer">Auspify Internship &mdash; Task 4: Weather Dashboard.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
