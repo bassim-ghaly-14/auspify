@@ -6,6 +6,7 @@ function Footer() {
       <Container>
         <p className="text-center text-sm text-slate-400 dark:text-slate-500">
           © {new Date().getFullYear()} TRADO Store. All rights reserved.
+          <span> Auspify Internship — Task 5: E-Commerce.</span>
         </p>
       </Container>
     </footer>
