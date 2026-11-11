@@ -24,7 +24,7 @@ The repository organizes the practical frontend tasks completed as part of the A
 | Task 1 | [Task-1-Landing-Page](./Task-1-Landing-Page) | Completed |
 | Task 4 | [Task-4-Weather-Dashboard](./Task-4-Weather-Dashboard) | Completed |
 | Task 5 | [Task-5-Ecommerce](./Task-5-Ecommerce) | Completed |
-| Task 6 | [Task-6-React-Dashboard](./Task-6-React-Dashboard) | Pending / In Progress |
+| Task 6 | [Task-6-React-Dashboard](./Task-6-React-Dashboard) | Completed |
 
 ## Task 4 — Weather Dashboard
 
@@ -96,15 +96,16 @@ npm run preview  # preview production build
 
 ## Task 6 — React Dashboard
 
-Pending / In Progress. The `Task-6-React-Dashboard/` directory exists but the project has not been started. It is not presented as completed.
+Auspy Insights — React Analytics Dashboard: A modern, production-quality analytics dashboard built with React, Vite, TypeScript, and Tailwind CSS. Demonstrates real API integration, interactive charts with Recharts, reusable UI components, responsive design, and professional SaaS aesthetics. All metrics are derived from the DummyJSON public APIs strictly from actual responses.
 
 ## Technology Stack
 
-Technologies are grouped by task; not all projects share the same stack.
-
-- **Task 1 — Responsive Landing Page:** HTML5, CSS3 (custom properties, responsive media queries), Vanilla JavaScript, SVG assets. No build step or framework.
-- **Task 4 — Weather Dashboard:** HTML5 (semantic markup), CSS3 (custom properties, flexbox/grid, media queries), Vanilla JavaScript (ES6+ modules, `async/await`, Fetch API, `AbortController`). No build step, no framework, no external dependencies. Weather data from Open-Meteo.
-- **Task 5 — E-Commerce Product Interface:** React 19, Vite, Tailwind CSS 4, Redux Toolkit, React Router, Formik/Yup, Axios, Framer Motion, React Toastify, Swiper.
+| Category | Technologies |
+|----------|-------------|
+| **Task 1 — Responsive Landing Page** | HTML5, CSS3 (custom properties, responsive media queries), Vanilla JavaScript, SVG assets. No build step or framework. |
+| **Task 4 — Weather Dashboard** | HTML5 (semantic markup), CSS3 (custom properties, flexbox/grid, media queries), Vanilla JavaScript (ES6+ modules, `async/await`, Fetch API, `AbortController`). No build step, no framework, no external dependencies. Weather data from Open-Meteo. |
+| **Task 5 — E-Commerce Product Interface** | React 19, Vite, Tailwind CSS 4, Redux Toolkit, React Router, Formik/Yup, Axios, Framer Motion, React Toastify, Swiper. |
+| **Task 6 — React Dashboard** | React 19, Vite 8, Tailwind CSS 4, Recharts 3, Lucide React, TypeScript 5.8 (strict mode), ESLint 10 + typescript-eslint, Prettier 3. |
 
 ## Repository Structure
 
@@ -113,7 +114,7 @@ auspify/
 ├── Task-1-Landing-Page/      # Completed: responsive landing page (HTML/CSS/JS)
 ├── Task-4-Weather-Dashboard/ # Completed: weather dashboard (HTML/CSS/JS)
 ├── Task-5-Ecommerce/         # Completed: e-commerce product interface (React + Vite)
-├── Task-6-React-Dashboard/   # Pending: React dashboard (not started)
+├── Task-6-React-Dashboard/   # Completed: React analytics dashboard (React + Vite + TypeScript)
 ├── Screenshots/              # Screenshots directory
 ├── Submission-Report.pdf     # Internship submission report
 ├── README.md
@@ -127,6 +128,7 @@ Folder names and capitalization reflect the actual directories on disk.
 - **Task 1:** Open `Task-1-Landing-Page/index.html` directly in a browser. No installation required.
 - **Task 4:** Serve `Task-4-Weather-Dashboard/` over a local HTTP server (for example, `python3 -m http.server 8000`) and open `http://localhost:8000`. Required because of cross-origin API fetch requests; `file://` execution is not relied upon.
 - **Task 5:** `cd Task-5-Ecommerce && npm install && npm run dev`.
+- **Task 6:** `cd Task-6-React-Dashboard && npm install && npm run dev`. Production build with `npm run build`. Preview with `npm run preview`.
 
 ## Submission Notes
 
