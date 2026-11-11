@@ -1,83 +1,88 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useRegisterRefresh } from '@/store/dataRefresh'
-import { useProducts } from '@/features/products/useProducts'
-import { useDebounce } from '@/hooks/useDebounce'
-import { ErrorState } from '@/components/ui/ErrorState'
-import { PageLoader } from '@/components/ui/PageLoader'
-import { ProductFilters } from '@/components/products/ProductFilters'
-import { ProductList } from '@/components/products/ProductList'
-import { Pagination } from '@/components/pagination/Pagination'
-import type { Product } from '@/types'
-import type { ProductSort } from '@/components/products/ProductFilters'
+import { useEffect, useMemo, useState } from 'react';
+import { useRegisterRefresh } from '@/store/dataRefresh';
+import { useProducts } from '@/features/products/useProducts';
+import { useDebounce } from '@/hooks/useDebounce';
+import { ErrorState } from '@/components/ui/ErrorState';
+import { PageLoader } from '@/components/ui/PageLoader';
+import { ProductFilters } from '@/components/products/ProductFilters';
+import { ProductList } from '@/components/products/ProductList';
+import { Pagination } from '@/components/pagination/Pagination';
+import type { Product } from '@/types';
+import type { ProductSort } from '@/components/products/ProductFilters';
 
-const PAGE_SIZE = 12
+const PAGE_SIZE = 12;
 
 function sortComparator(sort: ProductSort) {
   return (a: Product, b: Product) => {
     switch (sort) {
       case 'price-asc':
-        return a.price - b.price
+        return a.price - b.price;
       case 'price-desc':
-        return b.price - a.price
+        return b.price - a.price;
       case 'rating':
-        return b.rating - a.rating
+        return b.rating - a.rating;
       case 'stock':
-        return b.stock - a.stock
+        return b.stock - a.stock;
       default:
-        return 0
+        return 0;
     }
-  }
+  };
 }
 
 export function ProductsPage() {
-  const { data: products, loading, error, retry } = useProducts()
-  useRegisterRefresh('products', retry)
+  const { data: products, loading, error, retry } = useProducts();
+  useRegisterRefresh('products', retry);
 
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('')
-  const [sort, setSort] = useState<ProductSort>('featured')
-  const [page, setPage] = useState(1)
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('');
+  const [sort, setSort] = useState<ProductSort>('featured');
+  const [page, setPage] = useState(1);
 
-  const debouncedSearch = useDebounce(search, 300)
+  const debouncedSearch = useDebounce(search, 300);
+
   const categories = useMemo(
-    () => [...new Set((products ?? []).map((product) => product.category))].sort(),
-    [products],
-  )
+    () =>
+      [...new Set((products ?? []).map((product) => product.category))].sort((a, b) =>
+        a.localeCompare(b)
+      ),
+    [products]
+  );
 
   const filtered = useMemo(() => {
-    let list = (products ?? []).filter((product) => !category || product.category === category)
-    const query = debouncedSearch.toLowerCase()
+    let list = (products ?? []).filter((product) => !category || product.category === category);
+
+    const query = debouncedSearch.toLowerCase();
+
     if (query) {
       list = list.filter(
         (product) =>
-          product.title.toLowerCase().includes(query) || product.category.toLowerCase().includes(query),
-      )
+          product.title.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query)
+      );
     }
-    return [...list].sort(sortComparator(sort))
-  }, [products, category, debouncedSearch, sort])
 
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+    return [...list].sort(sortComparator(sort));
+  }, [products, category, debouncedSearch, sort]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
 
   // Keep the current page within range when filters shrink the result set.
   useEffect(() => {
-    // Fetch-on-mount-adjacent correction: keeps pagination in range when the
-    // filtered result set shrinks. Owned by this effect with abort-style
-    // cleanup semantics via the page state itself.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (page > totalPages) setPage(totalPages)
-  }, [filtered, page, totalPages])
+    if (page > totalPages) setPage(totalPages);
+  }, [filtered, page, totalPages]);
 
-  const current = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+  const current = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-  if (loading) return <PageLoader message="Loading products…" />
-  if (error) return <ErrorState message={error} onRetry={retry} />
+  if (loading) return <PageLoader message="Loading products…" />;
+  if (error) return <ErrorState message={error} onRetry={retry} />;
 
   const clearFilters = () => {
-    setSearch('')
-    setCategory('')
-    setSort('featured')
-    setPage(1)
-  }
+    setSearch('');
+    setCategory('');
+    setSort('featured');
+    setPage(1);
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -115,5 +120,5 @@ export function ProductsPage() {
         label="Product pagination"
       />
     </div>
-  )
+  );
 }
