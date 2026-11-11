@@ -26,6 +26,10 @@ The repository organizes the practical frontend tasks completed as part of the A
 | Task 5 | [Task-5-Ecommerce](./Task-5-Ecommerce) | Completed |
 | Task 6 | [Task-6-React-Dashboard](./Task-6-React-Dashboard) | Completed |
 
+### 4 / 4 Required Tasks Completed
+
+All four internship projects have been successfully completed and integrated into this repository.
+
 ## Task 4 — Weather Dashboard
 
 A responsive weather dashboard that fetches and displays real weather information for cities worldwide. Built with vanilla HTML, CSS, and JavaScript — no build step, framework, or external dependencies.
