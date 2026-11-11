@@ -1,142 +1,313 @@
 # AUSPIFY Frontend Development Internship
 
-Front End Development Internship repository — Auspify Technologies. This repository contains the frontend projects and task submissions completed during the internship, with each task organized in its own directory.
+> A collection of frontend projects completed during the **Auspify Technologies Frontend Development Internship**.
 
-## Organization
-**Auspify Technologies**
+This repository contains the practical tasks and project submissions completed throughout the internship. Each task is maintained in a separate directory with its own source code, documentation, and local development instructions.
 
-## Role
-Front End Development Intern
+---
 
-## Internship period
-23 October 2026 – 23 November 2026
+## Table of Contents
 
-> The internship is in progress. This repository documents the completed work as it is finished; it is not a final internship submission.
+- [About the Internship](#about-the-internship)
+- [Progress Overview](#progress-overview)
+- [Projects](#projects)
+  - [Task 1 — Responsive Landing Page](#task-1--responsive-landing-page)
+  - [Task 4 — Weather Dashboard](#task-4--weather-dashboard)
+  - [Task 5 — E-Commerce Product Interface](#task-5--e-commerce-product-interface)
+  - [Task 6 — React Analytics Dashboard](#task-6--react-analytics-dashboard)
+- [Technology Stack](#technology-stack)
+- [Repository Structure](#repository-structure)
+- [Running the Projects](#running-the-projects)
+- [Submission Report](#submission-report)
+- [License](#license)
 
-## Internship Overview
+---
 
-The repository organizes the practical frontend tasks completed as part of the AUSPIFY Front End Development Internship. Each completed task has its own directory containing source code, documentation, and run instructions. Tasks still in progress are marked as pending.
+## About the Internship
 
-## Task Progress
+| Details               | Information                        |
+| --------------------- | ---------------------------------- |
+| **Organization**      | Auspify Technologies               |
+| **Role**              | Frontend Development Intern        |
+| **Internship Period** | 23 October 2026 – 23 November 2026 |
+| **Repository Status** | In progress / continuously updated |
+| **Completed Tasks**   | 4 of 4 required tasks              |
 
-| Task | Project | Status |
-|------|---------|--------|
-| Task 1 | [Task-1-Landing-Page](./Task-1-Landing-Page) | Completed |
-| Task 4 | [Task-4-Weather-Dashboard](./Task-4-Weather-Dashboard) | Completed |
-| Task 5 | [Task-5-Ecommerce](./Task-5-Ecommerce) | Completed |
-| Task 6 | [Task-6-React-Dashboard](./Task-6-React-Dashboard) | Completed |
+> The internship is currently in progress. This repository documents completed work as it is finished and should not be considered a final internship submission until the internship period ends.
 
-### 4 / 4 Required Tasks Completed
+---
 
-All four internship projects have been successfully completed and integrated into this repository.
+## Progress Overview
 
-## Task 4 — Weather Dashboard
+| Task   | Project                                               |    Status    | Documentation                                  |
+| ------ | ----------------------------------------------------- | :----------: | ---------------------------------------------- |
+| Task 1 | [Responsive Landing Page](./Task-1-Landing-Page)      | ✅ Completed | [README](./Task-1-Landing-Page/README.md)      |
+| Task 4 | [Weather Dashboard](./Task-4-Weather-Dashboard)       | ✅ Completed | [README](./Task-4-Weather-Dashboard/README.md) |
+| Task 5 | [E-Commerce Product Interface](./Task-5-Ecommerce)    | ✅ Completed | [README](./Task-5-Ecommerce/README.md)         |
+| Task 6 | [React Analytics Dashboard](./Task-6-React-Dashboard) | ✅ Completed | [README](./Task-6-React-Dashboard/README.md)   |
 
-A responsive weather dashboard that fetches and displays real weather information for cities worldwide. Built with vanilla HTML, CSS, and JavaScript — no build step, framework, or external dependencies.
+### Completion Status
 
-**Features**
+**4 / 4 required tasks completed**
 
-- Real-time weather data through [Open-Meteo](https://open-meteo.com) (free API, no API key required)
-- City search using geocoding (Open-Meteo Geocoding API) with Enter-key support and no-results feedback
-- Current weather conditions: temperature, condition, feels-like, today's high/low, and local date/time
-- Weather highlights: feels-like, humidity, wind speed/direction, precipitation, sunrise, sunset
+All required internship projects have been completed and organized in this repository.
+
+---
+
+## Projects
+
+### Task 1 — Responsive Landing Page
+
+A responsive marketing landing page for **Nexora**, a fictional workspace product. The project is implemented as a static single-page website using semantic HTML, custom CSS, and vanilla JavaScript.
+
+#### Highlights
+
+- Responsive header with brand identity and desktop navigation
+- Collapsible mobile navigation menu
+- Skip-to-main-content link for keyboard and screen-reader users
+- Hero section, product preview, trust indicators, features, and call-to-action sections
+- Accessible mobile navigation using:
+  - `aria-expanded`
+  - `aria-controls`
+  - Focus trapping
+  - `Escape` key support
+- Responsive breakpoints for mobile, tablet, and desktop layouts
+- No framework, package installation, or build step required
+
+**Project directory:** [Task-1-Landing-Page](./Task-1-Landing-Page)  
+**Project documentation:** [Task-1-Landing-Page/README.md](./Task-1-Landing-Page/README.md)
+
+#### Run locally
+
+Open the following file directly in a browser:
+
+```text
+Task-1-Landing-Page/index.html
+```
+
+No installation or build step is required.
+
+---
+
+### Task 4 — Weather Dashboard
+
+A responsive weather dashboard that retrieves and displays real-time weather information for cities around the world. The project is built with vanilla HTML, CSS, and JavaScript without a framework or build step.
+
+#### Highlights
+
+- Real-time weather data through [Open-Meteo](https://open-meteo.com)
+- City search powered by the Open-Meteo Geocoding API
+- Search submission through the `Enter` key
+- Clear feedback for empty or invalid searches and cities with no results
+- Current weather information, including:
+  - Temperature
+  - Weather condition
+  - Feels-like temperature
+  - Today's high and low
+  - Local date and time
+- Weather highlights, including:
+  - Humidity
+  - Wind speed and direction
+  - Precipitation
+  - Sunrise and sunset
 - Hourly forecast with time, icon, temperature, and precipitation probability
-- 7-day forecast with day name, date, icon, description, and high/low temperatures
-- Celsius/Fahrenheit switching across all sections without additional API requests
-- Loading, invalid-input, city-not-found, network/API failure, and retry states
-- Responsive interface for mobile, tablet, and desktop screens
+- Seven-day forecast with day name, date, condition, and high/low temperatures
+- Celsius/Fahrenheit switching across all dashboard sections without additional API requests
+- Loading, retry, network-error, and API-error states
+- Responsive layout for mobile, tablet, and desktop screens
 
-**Project:** [Task-4-Weather-Dashboard/](./Task-4-Weather-Dashboard)  
-**Task documentation:** [Task-4-Weather-Dashboard/README.md](./Task-4-Weather-Dashboard/README.md)
+**Project directory:** [Task-4-Weather-Dashboard](./Task-4-Weather-Dashboard)  
+**Project documentation:** [Task-4-Weather-Dashboard/README.md](./Task-4-Weather-Dashboard/README.md)
 
-**How to run locally**
+#### Run locally
 
-This is a static frontend project with no build step. Because it makes cross-origin `fetch` requests to the Open-Meteo APIs, it must be served over HTTP (opening `index.html` as `file://` may be blocked by browser CORS policy):
+This project makes cross-origin `fetch` requests to the Open-Meteo APIs. For that reason, it should be served through a local HTTP server instead of being opened directly with the `file://` protocol.
 
 ```bash
 cd Task-4-Weather-Dashboard
 python3 -m http.server 8000
-# then open http://localhost:8000 in a browser
 ```
 
-An internet connection is required to reach the Open-Meteo APIs.
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
-## Existing Projects
+An active internet connection is required to retrieve weather data.
 
-### Task 1 — Responsive Landing Page
-
-Responsive marketing landing page for **Nexora**, a fictional workspace product. Built as a static, single-page site with HTML5, CSS3, and vanilla JavaScript.
-
-- Responsive header with brand link and desktop navigation
-- Collapsible mobile navigation menu with open/close buttons
-- Skip-to-main-content link for keyboard and screen-reader users
-- Hero, product preview, trust indicators, features, and call-to-action sections
-- Accessible mobile menu (`aria-expanded`, `aria-controls`, focus trapping, Escape to close)
-- Responsive breakpoints at 640px, 768px, and 1024px
-
-**Project:** [Task-1-Landing-Page/](./Task-1-Landing-Page)  
-**Task documentation:** [Task-1-Landing-Page/README.md](./Task-1-Landing-Page/README.md)
-
-**Run locally:** Open `Task-1-Landing-Page/index.html` directly in a browser. No installation or build step is required.
+---
 
 ### Task 5 — E-Commerce Product Interface
 
-**Framework and tooling:** React 19, Vite, Tailwind CSS 4, Redux Toolkit, React Router, Formik/Yup, Axios, Framer Motion, React Toastify, Swiper.
+A complete e-commerce frontend interface built with React and modern frontend tooling. The application demonstrates product discovery, shopping-cart management, authentication-related flows, responsive layouts, and reusable UI patterns.
 
-- Routing with `react-router-dom`: Home, Products, Cart, Checkout, Login, Register, Profile, Wishlist, NotFound, plus a `ProtectedRoute`
-- Product listing from an external API via `src/services/api.js` (axios), with loading skeletons and error handling
-- Search and filtering: category, brand, and price-range filters, pagination, and a "clear all" action
-- Shopping cart: Redux Toolkit slices for authenticated and guest carts
-- Theme context (light/dark/system), wishlist slice, Formik/Yup forms, animations, notifications, and carousels
-**Run locally:**
+#### Highlights
+
+- Multi-page navigation using `react-router-dom`
+- Home, Products, Cart, Checkout, Login, Register, Profile, Wishlist, and Not Found pages
+- Protected routes for authenticated areas
+- Product listing from an external API through Axios
+- Loading skeletons and API error handling
+- Product search and filtering by:
+  - Category
+  - Brand
+  - Price range
+- Pagination and a **Clear All** filters action
+- Shopping cart state management with Redux Toolkit
+- Support for authenticated and guest cart flows
+- Light, dark, and system theme modes
+- Wishlist functionality
+- Form validation with Formik and Yup
+- Motion effects with Framer Motion
+- Toast notifications with React Toastify
+- Product carousels with Swiper
+
+#### Run locally
+
 ```bash
 cd Task-5-Ecommerce
 npm install
-npm run dev      # dev server
-npm run build    # production build
-npm run preview  # preview production build
+npm run dev
 ```
-`node_modules/` and `dist/` are gitignored and not published.
 
-## Task 6 — React Dashboard
+#### Available scripts
 
-Auspy Insights — React Analytics Dashboard: A modern, production-quality analytics dashboard built with React, Vite, TypeScript, and Tailwind CSS. Demonstrates real API integration, interactive charts with Recharts, reusable UI components, responsive design, and professional SaaS aesthetics. All metrics are derived from the DummyJSON public APIs strictly from actual responses.
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run preview  # Preview the production build locally
+```
+
+> `node_modules/` and `dist/` are generated directories and are excluded from version control.
+
+---
+
+### Task 6 — React Analytics Dashboard
+
+**Auspy Insights** is a modern analytics dashboard built with React, Vite, TypeScript, and Tailwind CSS. The project demonstrates real API integration, interactive data visualization, reusable UI components, responsive design, and a polished SaaS-style interface.
+
+#### Highlights
+
+- React-based analytics dashboard
+- TypeScript with strict mode enabled
+- Real API integration using responses from the DummyJSON public APIs
+- Interactive charts built with Recharts
+- Reusable and composable UI components
+- Responsive dashboard layout
+- Professional SaaS-inspired visual design
+- Icons provided by Lucide React
+- Code-quality tooling with ESLint and Prettier
+- Dashboard metrics derived strictly from actual API responses
+
+#### Run locally
+
+```bash
+cd Task-6-React-Dashboard
+npm install
+npm run dev
+```
+
+#### Available scripts
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run preview  # Preview the production build locally
+```
+
+---
 
 ## Technology Stack
 
-| Category | Technologies |
-|----------|-------------|
-| **Task 1 — Responsive Landing Page** | HTML5, CSS3 (custom properties, responsive media queries), Vanilla JavaScript, SVG assets. No build step or framework. |
-| **Task 4 — Weather Dashboard** | HTML5 (semantic markup), CSS3 (custom properties, flexbox/grid, media queries), Vanilla JavaScript (ES6+ modules, `async/await`, Fetch API, `AbortController`). No build step, no framework, no external dependencies. Weather data from Open-Meteo. |
-| **Task 5 — E-Commerce Product Interface** | React 19, Vite, Tailwind CSS 4, Redux Toolkit, React Router, Formik/Yup, Axios, Framer Motion, React Toastify, Swiper. |
-| **Task 6 — React Dashboard** | React 19, Vite 8, Tailwind CSS 4, Recharts 3, Lucide React, TypeScript 5.8 (strict mode), ESLint 10 + typescript-eslint, Prettier 3. |
+| Project                                   | Main Technologies                                                                                                                                     |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Task 1 — Responsive Landing Page**      | HTML5, CSS3, CSS custom properties, responsive media queries, vanilla JavaScript, SVG assets                                                          |
+| **Task 4 — Weather Dashboard**            | Semantic HTML5, CSS3, Flexbox, CSS Grid, media queries, vanilla JavaScript, ES6+ modules, `async/await`, Fetch API, `AbortController`, Open-Meteo API |
+| **Task 5 — E-Commerce Product Interface** | React 19, Vite, Tailwind CSS 4, Redux Toolkit, React Router, Formik, Yup, Axios, Framer Motion, React Toastify, Swiper                                |
+| **Task 6 — React Analytics Dashboard**    | React 19, Vite 8, TypeScript 5.8, Tailwind CSS 4, Recharts 3, Lucide React, ESLint 10, `typescript-eslint`, Prettier 3                                |
+
+---
 
 ## Repository Structure
 
+```text
+.
+├── Task-1-Landing-Page/       # Responsive landing page using HTML, CSS, and JavaScript
+├── Task-4-Weather-Dashboard/  # Weather dashboard using vanilla JavaScript and Open-Meteo
+├── Task-5-Ecommerce/          # E-commerce interface using React and Vite
+├── Task-6-React-Dashboard/    # Analytics dashboard using React, TypeScript, and Vite
+├── Screenshots/               # Project screenshots and visual documentation
+├── Submission-Report.pdf      # Internship submission report
+├── README.md                  # Repository documentation
+└── .gitignore                 # Git exclusion rules
 ```
-auspify/
-├── Task-1-Landing-Page/      # Completed: responsive landing page (HTML/CSS/JS)
-├── Task-4-Weather-Dashboard/ # Completed: weather dashboard (HTML/CSS/JS)
-├── Task-5-Ecommerce/         # Completed: e-commerce product interface (React + Vite)
-├── Task-6-React-Dashboard/   # Completed: React analytics dashboard (React + Vite + TypeScript)
-├── Screenshots/              # Screenshots directory
-├── Submission-Report.pdf     # Internship submission report
-├── README.md
-└── .gitignore
+
+> Directory names and capitalization reflect the actual repository structure.
+
+---
+
+## Running the Projects
+
+### Static projects
+
+Task 1 can be opened directly in a browser:
+
+```text
+Task-1-Landing-Page/index.html
 ```
 
-Folder names and capitalization reflect the actual directories on disk.
+Task 4 should be served through a local HTTP server because it performs cross-origin API requests:
 
-## Running Projects
+```bash
+cd Task-4-Weather-Dashboard
+python3 -m http.server 8000
+```
 
-- **Task 1:** Open `Task-1-Landing-Page/index.html` directly in a browser. No installation required.
-- **Task 4:** Serve `Task-4-Weather-Dashboard/` over a local HTTP server (for example, `python3 -m http.server 8000`) and open `http://localhost:8000`. Required because of cross-origin API fetch requests; `file://` execution is not relied upon.
-- **Task 5:** `cd Task-5-Ecommerce && npm install && npm run dev`.
-- **Task 6:** `cd Task-6-React-Dashboard && npm install && npm run dev`. Production build with `npm run build`. Preview with `npm run preview`.
+Then visit [http://localhost:8000](http://localhost:8000).
 
-## Submission Notes
+### React projects
 
-The internship submission report is available here: [Submission-Report.pdf](./Submission-Report.pdf). The PDF is part of the internship submission and is not modified by repository maintenance commits.
+For Task 5:
+
+```bash
+cd Task-5-Ecommerce
+npm install
+npm run dev
+```
+
+For Task 6:
+
+```bash
+cd Task-6-React-Dashboard
+npm install
+npm run dev
+```
+
+For either React project, production commands are:
+
+```bash
+npm run build
+npm run preview
+```
+
+### General prerequisites
+
+- A modern web browser
+- Node.js and npm for the React projects
+- Python 3 for serving the Weather Dashboard locally
+- An internet connection for projects that consume external APIs
+
+---
+
+## Submission Report
+
+The internship submission report is available here:
+
+[Download Submission-Report.pdf](./Submission-Report.pdf)
+
+The PDF is part of the internship submission and is not modified as part of routine repository maintenance.
+
+---
 
 ## License
-This repository contains internship coursework for Auspify Technologies.
+
+This repository contains internship coursework completed for **Auspify Technologies**.
+
+Unless otherwise stated inside an individual project directory, the code is intended for educational and internship-submission purposes.
