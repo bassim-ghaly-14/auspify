@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { FiMenu, FiSun, FiMoon, FiMonitor, FiShoppingCart } from 'react-icons/fi'
+import { FiMenu, FiSun, FiMoon, FiMonitor, FiShoppingCart, FiLoader } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 
 import Container from '../ui/Container'
+import Button from '../ui/Button'
+import Dialog from '../ui/Dialog'
+
 import MobileMenu from './MobileMenu'
 import { logout } from '../../store/authSlice'
 import { clearCartState } from '../../store/cartSlice'
@@ -25,6 +28,8 @@ function Navbar({ onCartOpen }) {
   const { theme, setTheme } = useTheme()
 
   const [menuOpen, setMenuOpen] = useState(false)
+  const [logoutConfirmOpen, setLogoutConfirmOpen] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const user = useSelector((s) => s.auth.user)
   const cartItemCount = useSelector((s) => s.cart.numOfCartItems)
@@ -44,21 +49,25 @@ function Navbar({ onCartOpen }) {
     navigate('/')
   }
 
+  const handleConfirmLogout = () => {
+    if (isLoggingOut) return
+    setIsLoggingOut(true)
+    handleLogout()
+    setLogoutConfirmOpen(false)
+  }
+
+  const handleCancelLogout = () => {
+    setIsLoggingOut(false)
+    setLogoutConfirmOpen(false)
+  }
+
   const ThemeIcon = THEME_ICONS[theme] ?? FiMoon
 
-  // Brand purple reused from the design system (violet-500 is used for
-  // primary buttons, prices and focus states across the app). font-medium is
-  // the shared baseline so the bold hover/active state does not shift
-  // neighboring navigation items.
   const navItemClasses = (active = false) =>
     `text-sm font-medium transition-colors hover:text-violet-500 hover:font-bold ${
       active ? 'text-violet-500 font-bold' : 'text-slate-600'
     } dark:${active ? 'text-violet-500' : 'text-slate-300'}`
 
-  // A route is active when it matches the location. Home matches only the
-  // root; every other item also matches nested routes (e.g. /products is
-  // active on /products/:id). Matching is class-based, so hovering another
-  // item never overrides the active route's identity.
   const isActive = (to) => {
     if (to === '/') return location.pathname === '/'
     return location.pathname === to || location.pathname.startsWith(`${to}/`)
@@ -119,8 +128,8 @@ function Navbar({ onCartOpen }) {
                   </Link>
                   <button
                     type="button"
-                    onClick={handleLogout}
-                    className={navItemClasses()}
+                    onClick={() => setLogoutConfirmOpen(true)}
+                    className="text-sm font-medium text-red-500 transition-colors hover:font-bold hover:text-red-600 dark:text-red-400 dark:hover:text-red-300"
                   >
                     Logout
                   </button>
@@ -185,6 +194,50 @@ function Navbar({ onCartOpen }) {
         user={user}
         onLogout={handleLogout}
       />
+
+      {logoutConfirmOpen && (
+        <Dialog
+          open={logoutConfirmOpen}
+          onClose={() => {
+            setIsLoggingOut(false)
+            setLogoutConfirmOpen(false)
+          }}
+          title="Confirm Logout"
+          description="Are you sure you want to log out of your account?"
+          footer={
+            <>
+              <Button
+                variant="outline"
+                onClick={handleCancelLogout}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="danger"
+                onClick={handleConfirmLogout}
+                disabled={isLoggingOut}
+              >
+                {isLoggingOut ? (
+                  <>
+                    <FiLoader className="h-4 w-4 animate-spin" />
+                    Logging out...
+                  </>
+                ) : (
+                  'Yes, Log Out'
+                )}
+              </Button>
+            </>
+          }
+        >
+          {isLoggingOut ? (
+            <span className="flex items-center justify-center gap-2 py-4 text-sm text-slate-500 dark:text-slate-400">
+              <FiLoader className="h-4 w-4 animate-spin" />
+              Logging out...
+            </span>
+          ) : null}
+        </Dialog>
+      )}
+
     </>
   )
 }
