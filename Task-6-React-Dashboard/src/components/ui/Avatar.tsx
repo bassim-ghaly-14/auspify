@@ -21,7 +21,7 @@ const AVATAR_COLORS = [
   'from-rose-500/20 to-pink-500/20 text-rose-700',
   'from-indigo-500/20 to-sky-500/20 text-indigo-700',
   'from-fuchsia-500/20 to-pink-500/20 text-fuchsia-700',
-  'from-lime-500/20 to-green-500/20 text-green-700',
+  'from-lime-500/20 to-green-500/20 text-lime-700',
 ];
 
 function getInitials(name: string): string {
@@ -46,7 +46,7 @@ function getAvatarColor(name: string): string {
   let hash = 0;
 
   for (const char of name.trim().toLowerCase()) {
-    hash = (hash * 31 + (char.codePointAt(0) ?? 0)) | 0;
+    hash = Math.trunc(hash * 31 + (char.codePointAt(0) ?? 0));
   }
 
   return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length] ?? AVATAR_COLORS[0]!;
